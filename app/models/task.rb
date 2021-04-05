@@ -3,6 +3,7 @@
 # Table name: tasks
 #
 #  id          :bigint           not null, primary key
+#  code        :string
 #  description :text
 #  due_date    :date
 #  name        :string
@@ -33,8 +34,13 @@ class Task < ApplicationRecord
 
   validate :due_date_validity
 
+  before_create :generate_code
+
   accepts_nested_attributes_for :participating_users, allow_destroy: true
 
+  def generate_code
+    self.code = "#{owner_id}#{Time.now.to_i.to_s(36)}#{SecureRandom.hex(8)}"
+  end
 
   def due_date_validity
     return if due_date.blank?
