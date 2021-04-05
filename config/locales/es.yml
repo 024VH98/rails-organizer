@@ -1,0 +1,17 @@
+---
+es:
+  categories:
+    form:
+      description: Descripcion
+      name: Nombre
+    new:
+      new_category: Nueva categoria
+  # I18n for auto genareted texts
+  activerecord:
+    models:
+      category:
+        one: Categoria
+        others: categorias
+  common:
+      back: 'Atras'
+  hello: Hello world
